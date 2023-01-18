@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-
+import PerformantImage from '../PerformantImage';
 const Hero = () => {
   return (
     <Wrapper>
@@ -20,7 +20,7 @@ const Wrapper = styled.section`
   background: hsl(0deg 0% 1%);
 `;
 
-const HeroImage = styled.img`
+const HeroImage = styled(PerformantImage)`
   display: block;
   width: 500px;
   height: 500px;

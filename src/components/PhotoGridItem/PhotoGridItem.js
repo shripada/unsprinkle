@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-
+import PerformantImage from '../PerformantImage';
 const PhotoGridItem = ({ id, src, alt, tags }) => {
+  // Get the path without the extension
+  const imagePath = src.split('.')[0];
   return (
     <article>
       <Anchor href={`/photos/${id}`}>
-        <Image src={src} />
+        <PerformantImage src={src} alt={alt} />
       </Anchor>
       <Tags>
         {tags.map((tag) => (
@@ -15,6 +17,10 @@ const PhotoGridItem = ({ id, src, alt, tags }) => {
     </article>
   );
 };
+
+const ResponsiveImage = styled.picture`
+  width: 100%;
+`;
 
 const Anchor = styled.a`
   text-decoration: none;
@@ -28,20 +34,29 @@ const Image = styled.img`
   height: 300px;
   border-radius: 2px;
   margin-bottom: 8px;
+  object-fit: cover;
 `;
 
 const Tags = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-right: 1px;
+  text-overflow: ellipsis;
+  padding: 4px;
 `;
 
 const Tag = styled.li`
+  display: inline;
+  margin-right: 8px;
   padding: 4px 8px;
   background: var(--color-gray-300);
   font-size: 0.875rem;
   font-weight: 475;
   color: var(--color-gray-800);
+  &:last-of-type {
+    margin-right: 0;
+  }
 `;
 
 export default PhotoGridItem;
